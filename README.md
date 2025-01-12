@@ -1,50 +1,78 @@
-# React + TypeScript + Vite
+# test-task-forte-21-front
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание
+Проект предназначен для демонстрации базовой работы с клиентами (CRUD: создание, чтение, редактирование и удаление).  
+Данное задание выполнено в рамках тестового задания и включает в себя список, детальную страницу и операции с клиентами.
 
-Currently, two official plugins are available:
+**Взаимодействие с сервером** производится через собственный адаптер, расположенный в пакете [**test-task-forte-21-api-adapter**](https://www.npmjs.com/package/test-task-forte-21-api-adapter).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Требования к окружению
+- **Node.js** (рекомендуется версия 18.x и выше).  
+  Установить можно с [официального сайта](https://nodejs.org/) или через любой менеджер версий (nvm, fnm и т. д.).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Yarn** (рекомендуется версия 1.22.x и выше).  
+  Установить можно командой:
+  ```bash
+  npm install --global yarn
+  ```
+  или другим удобным для вас способом.
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Установка и запуск
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. **Клонируйте репозиторий**:
+   ```bash
+   git clone https://github.com/AndreySFN/test-task-forte-21-front.git
+   ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+2. **Перейдите в папку проекта**:
+   ```bash
+   cd test-task-forte-21-front
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+3. **Установите зависимости**:
+   ```bash
+   yarn install
+   ```
+
+4. **Настройте переменную окружения**:
+   - Убедитесь, что у вас установлена переменная `VITE_SERVER_URI`.
+   - Её значение должно указывать на URI сервера (репозиторий сервера находится [здесь](https://github.com/AndreySFN/test-task-forte-21-back)).
+   - Например, вы можете прописать переменную в файле `.env` (рядом с `package.json` или в другом месте по вашему выбору):
+     ```env
+     VITE_SERVER_URI=http://localhost:3000
+     ```
+
+5. **Запустите проект** одним из следующих способов:
+
+   - **Режим разработки**:
+     ```bash
+     yarn dev
+     ```
+     Запустит локальный сервер разработки с Vite. По умолчанию доступен по адресу [http://localhost:5173](http://localhost:5173) (порт может отличаться).
+
+   - **Сборка**:
+     ```bash
+     yarn build
+     ```
+     Скомпилирует TypeScript (через `tsc -b`) и соберёт проект с помощью Vite.  
+     Результат будет находиться в папке `dist`.
+
+   - **Линтинг**:
+     ```bash
+     yarn lint
+     ```
+     Запустит ESLint и попытается автоматически исправить найденные проблемы.
+
+   - **Предпросмотр**:
+     ```bash
+     yarn preview
+     ```
+     Запустит локальный сервер для предварительного просмотра собранного проекта из папки `dist`.
+
+---
+
+Если у вас возникнут вопросы или проблемы при работе с проектом, вы можете задать их в разделе [Issues](https://github.com/AndreySFN/test-task-forte-21-front/issues) репозитория.

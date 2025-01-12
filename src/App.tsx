@@ -1,10 +1,5 @@
-function App() {
+import { MainPage } from './pages/Main.tsx'
 
-  return (
-    <>
-      ТУТ БУДЕТ КОНТЕНТ!
-    </>
-  )
+export default function App() {
+  return <MainPage />
 }
-
-export default App
