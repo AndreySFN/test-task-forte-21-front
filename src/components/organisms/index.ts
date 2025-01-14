@@ -1,2 +1,2 @@
 export * from './customTable'
-export * from './clientDetails'
+export * from './customModel'

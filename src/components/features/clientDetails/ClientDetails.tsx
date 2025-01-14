@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import withLoaderOverlay from '../../HOC/withLoaderOverlay.tsx'
 import { clientDtoToModalElements } from './mappers/clientDtoToModalElement.ts'
 
-const Modal = withLoaderOverlay(CustomModal)
+const Modal = withLoaderOverlay(CustomModal) // TODO: Оно кажется не работает
 
 export const ClientDetails = () => {
   const { loading, client, fetchClient, error, isOpen, setIsOpen } =

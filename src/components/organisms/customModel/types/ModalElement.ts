@@ -1,7 +1,9 @@
+import { ReactNode } from 'react'
+
 export interface IModalElement {
   key?: string
   subtitle: string
-  value: string
+  value: string | ReactNode
 }
 
 export class ModalElement implements IModalElement {

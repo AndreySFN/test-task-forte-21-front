@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { subscribeWithSelector } from 'zustand/middleware'
 import { IError } from '../../../../types'
 import { apiAdapter } from '../../../../api'
 import { ClientDto } from 'test-task-forte-21-api-adapter'
@@ -21,23 +20,21 @@ const initialState = {
   isOpen: true,
 }
 
-export const useClientDetailsStore = create<IClientStoreState>()(
-  subscribeWithSelector((set) => ({
-    ...initialState,
-    setIsOpen: (val: boolean) => {
-      set({ isOpen: val })
-    },
-    fetchClient: async (id: string) => {
-      set({ loading: true, error: null })
-      try {
-        const client = await apiAdapter.getClientById(id)
-        set({ client, loading: false })
-      } catch (error: unknown) {
-        set({
-          error: (error as IError).message || 'Failed to fetch client', // TODO: Разобраться с типизацией
-          loading: false,
-        })
-      }
-    },
-  })),
-)
+export const useClientDetailsStore = create<IClientStoreState>()((set) => ({
+  ...initialState,
+  setIsOpen: (val: boolean) => {
+    set({ isOpen: val })
+  },
+  fetchClient: async (id: string) => {
+    set({ loading: true, error: null })
+    try {
+      const client = await apiAdapter.getClientById(id)
+      set({ client, loading: false })
+    } catch (error: unknown) {
+      set({
+        error: (error as IError).message || 'Failed to fetch client', // TODO: Разобраться с типизацией
+        loading: false,
+      })
+    }
+  },
+}))

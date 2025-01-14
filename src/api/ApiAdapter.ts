@@ -6,7 +6,7 @@ if (!VITE_SERVER_URI) {
   throw new Error('VITE_SERVER_URI does not exist in environment')
 }
 
-const apiAdapter = new ApiAdapter(VITE_SERVER_URI)
+export const apiAdapter = new ApiAdapter(VITE_SERVER_URI) // TODO: Поправить авторизацию, слетает при перезагрузке
 apiAdapter.getInstance().interceptors.response.use(
   (response) => response,
   (error) => {
