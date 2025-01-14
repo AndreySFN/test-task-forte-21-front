@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Box, TextField, Button, Typography, Alert } from '@mui/material'
-import { useAuthStore } from './stores/useAuthStore.ts'
+import { useAuthStore } from '../../../api/stores/useAuthStore.ts'
 import { useNavigate } from 'react-router-dom'
 
 export const Auth: React.FC = () => {

@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
-import { apiAdapter } from '../../../../api'
+import { apiAdapter } from '../ApiAdapter.ts'
 
 interface IAuthState {
   token: string | null
