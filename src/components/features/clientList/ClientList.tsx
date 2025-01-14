@@ -1,8 +1,9 @@
-import { CustomTable } from '../../organisms'
+import { CustomTable } from '../../organisms/customTable'
 import { useEffect } from 'react'
-import SearchBar from '../../molecules/SearchBar.tsx'
+import SearchBar from '../../molecules/searchBar/SearchBar.tsx'
 import { CLIENT_LIST_TABLE_COLUMNS } from '../../../consts'
-import { useClientListStore } from './stores/useClientListStore.ts'
+import { useClientListStore } from './stores'
+import { useNavigate } from 'react-router-dom'
 
 export const ClientList = () => {
   const {
@@ -18,7 +19,11 @@ export const ClientList = () => {
     loading,
     error,
     fetchUsers,
+    // setSelectionModel, //TODO: до работы с аутентификацикей
+    selectedRows,
   } = useClientListStore()
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     void fetchUsers()
@@ -31,6 +36,9 @@ export const ClientList = () => {
         error
       ) : (
         <CustomTable
+          onDoubleCellClick={(val) => navigate(`/clients/${val.id}`)}
+          selectionModel={selectedRows}
+          //onSelectionModelChange={setSelectionModel} // TODO: Должно пробрасоваться только если пользователь авторизован
           total={total}
           rows={rows}
           columns={CLIENT_LIST_TABLE_COLUMNS}

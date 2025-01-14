@@ -1,7 +1,11 @@
 import { create } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
-import { GridSortDirection, GridValidRowModel } from '@mui/x-data-grid'
-import { clientDtoToTableRowsMapper } from '../mappers/clientDtoToTableRows.mapper.ts'
+import {
+  GridRowSelectionModel,
+  GridSortDirection,
+  GridValidRowModel,
+} from '@mui/x-data-grid'
+import { clientDtoToTableRowsMapper } from '../mappers'
 import { IError } from '../../../../types'
 import { apiAdapter } from '../../../../api'
 
@@ -11,16 +15,16 @@ interface IClientsStoreState {
   search: string
   sortField?: string
   sortOrder?: GridSortDirection
-
   rows: GridValidRowModel[]
   loading: boolean
   error: string | null
   total: number
+  selectedRows: GridRowSelectionModel
 
   changeSearch: (newSearch: string) => void
   changePagination: (newPage: number, newLimit: number) => void
   changeSort: (sortField?: string, sortOrder?: GridSortDirection) => void
-
+  setSelectionModel: (selectionModel: GridRowSelectionModel) => void
   fetchUsers: () => Promise<void>
 }
 
@@ -31,8 +35,8 @@ export const useClientListStore = create<IClientsStoreState>()(
     search: '',
     sortField: undefined,
     sortOrder: undefined,
-
     rows: [],
+    selectedRows: [],
     loading: false,
     error: null,
     total: 0,
@@ -48,6 +52,10 @@ export const useClientListStore = create<IClientsStoreState>()(
     changeSort: (sortField?: string, sortOrder?: GridSortDirection) => {
       set({ sortField, sortOrder })
       void get().fetchUsers()
+    },
+
+    setSelectionModel: (newSelectionModel: GridRowSelectionModel) => {
+      set({ selectedRows: newSelectionModel })
     },
 
     fetchUsers: async () => {
