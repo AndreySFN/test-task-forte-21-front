@@ -20,7 +20,7 @@ const SearchBar: React.FC<ISearchBar> = ({ searchCallback }) => {
     >
       <TextField
         variant="outlined"
-        placeholder="Введите текст для поиска"
+        placeholder="Enter text to search"
         fullWidth
         value={search}
         onChange={(e) => setSearch(e.target.value)}

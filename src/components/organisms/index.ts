@@ -1,1 +1,2 @@
-export * from './CustomTable.tsx'
+export * from './customTable'
+export * from './clientDetails'
