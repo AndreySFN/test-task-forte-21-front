@@ -3,8 +3,10 @@ import { Button } from '@mui/material'
 import { ClientModal } from '../../organisms/clientModal/ClientModal.tsx'
 import { apiAdapter } from '../../../api'
 import { IError } from '../../../types'
+import { useClientListStore } from '../../widgets/clientList/stores'
 
 export const CreateClientButton = () => {
+  const fetchClients = useClientListStore((state) => state.fetchClients)
   const [open, setOpen] = useState(false)
 
   const [name, setName] = useState('')
@@ -35,6 +37,7 @@ export const CreateClientButton = () => {
     } catch (e: unknown) {
       setError((e as IError).message) // TODO: убрать
     }
+    void fetchClients()
   }
 
   return (

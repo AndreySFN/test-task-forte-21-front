@@ -8,6 +8,7 @@ import {
 } from '@mui/x-data-grid'
 import { GridSortModel } from '@mui/x-data-grid/models/gridSortModel'
 import { DEFAULT_PAGE_SIZE_OPTIONS } from '../../../consts'
+import {Box} from "@mui/material";
 
 export interface ICustomTableProps {
   sortModel: GridSortModel
@@ -41,7 +42,7 @@ export const CustomTable: React.FC<ICustomTableProps> = (props) => {
   const isCheckboxSelectionEnabled = !!onSelectionModelChange
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <Box sx={{ width: '100%' }}>
       <DataGrid
         rows={rows}
         loading={loading}
@@ -61,6 +62,6 @@ export const CustomTable: React.FC<ICustomTableProps> = (props) => {
         rowSelectionModel={selectionModel}
         onCellDoubleClick={onDoubleCellClick}
       />
-    </div>
+    </Box>
   )
 }
