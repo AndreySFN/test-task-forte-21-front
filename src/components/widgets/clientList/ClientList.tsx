@@ -6,8 +6,9 @@ import { useClientListStore } from './stores'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../../../api/stores/useAuthStore.ts'
 import { Box } from '@mui/material'
-import { CreateClientButton } from '../../features/addClient/AddClient.tsx'
+import { CreateClientButton } from '../../features/createClient/CreateClient.tsx'
 import { UpdateClientButton } from '../../features/editClient/EditClient.tsx'
+import { DeleteClientButton } from '../../features/deleteClient/DeleteClient.tsx'
 
 export const ClientList = () => {
   const {
@@ -22,7 +23,7 @@ export const ClientList = () => {
     total,
     loading,
     error,
-    fetchUsers,
+    fetchClients,
     setSelectionModel,
     selectedRows,
   } = useClientListStore()
@@ -32,8 +33,8 @@ export const ClientList = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    void fetchUsers()
-  }, [fetchUsers])
+    void fetchClients()
+  }, [fetchClients])
 
   return (
     <>
@@ -52,6 +53,7 @@ export const ClientList = () => {
             isDisabled={selectedRows.length !== 1}
             id={String(selectedRows[0])}
           />
+          <DeleteClientButton />
         </Box>
       )}
       {error ? (

@@ -25,7 +25,7 @@ interface IClientsStoreState {
   changePagination: (newPage: number, newLimit: number) => void
   changeSort: (sortField?: string, sortOrder?: GridSortDirection) => void
   setSelectionModel: (selectionModel: GridRowSelectionModel) => void
-  fetchUsers: () => Promise<void>
+  fetchClients: () => Promise<void>
 }
 
 export const useClientListStore = create<IClientsStoreState>()(
@@ -43,22 +43,22 @@ export const useClientListStore = create<IClientsStoreState>()(
 
     changeSearch: (newSearch: string) => {
       set({ search: newSearch })
-      void get().fetchUsers() // TODO: подумать, есть ли вариант лучше
+      void get().fetchClients() // TODO: подумать, есть ли вариант лучше
     },
     changePagination: (newPage: number, newLimit: number) => {
       set({ page: newPage, pageSize: newLimit })
-      void get().fetchUsers()
+      void get().fetchClients()
     },
     changeSort: (sortField?: string, sortOrder?: GridSortDirection) => {
       set({ sortField, sortOrder })
-      void get().fetchUsers()
+      void get().fetchClients()
     },
 
     setSelectionModel: (newSelectionModel: GridRowSelectionModel) => {
       set({ selectedRows: newSelectionModel })
     },
 
-    fetchUsers: async () => {
+    fetchClients: async () => {
       set({ loading: true, error: null })
       try {
         const { page, pageSize, search, sortField, sortOrder } = get()

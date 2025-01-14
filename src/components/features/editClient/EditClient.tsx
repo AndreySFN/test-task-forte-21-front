@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Button } from '@mui/material'
 import { ClientModal } from '../../organisms/clientModal/ClientModal.tsx'
 import { useEditClientStore } from './stores/useEditClientStore.ts'
+import { useClientListStore } from '../../widgets/clientList/stores'
 
 export interface IUpdateUserButtonProps {
   isDisabled: boolean
@@ -31,6 +32,8 @@ export const UpdateClientButton: FC<IUpdateUserButtonProps> = ({
     reset,
   } = useEditClientStore()
 
+  const fetchClients = useClientListStore((state) => state.fetchClients)
+
   const handleOpen = async () => {
     await fetchClient(id)
     setOpen(true)
@@ -39,7 +42,10 @@ export const UpdateClientButton: FC<IUpdateUserButtonProps> = ({
     reset()
   }
   const handleSave = () => {
-    saveClient().then(handleClose)
+    saveClient().then(() => {
+      void fetchClients()
+      handleClose()
+    })
   }
 
   return (
