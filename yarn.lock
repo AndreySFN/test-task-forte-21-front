@@ -1989,10 +1989,10 @@ synckit@^0.9.1:
     "@pkgr/core" "^0.1.0"
     tslib "^2.6.2"
 
-test-task-forte-21-api-adapter@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/test-task-forte-21-api-adapter/-/test-task-forte-21-api-adapter-1.0.2.tgz"
-  integrity sha512-gaOtPDjJ8Of0HOFl1mJYH2H3Kj0/HOC446Ku9zMMydx5E+uZhmfIkElkvJfqBpPetqQcjoxfVQ78WAFb1dmPOw==
+test-task-forte-21-api-adapter@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/test-task-forte-21-api-adapter/-/test-task-forte-21-api-adapter-1.0.3.tgz#8e15fdd2f1628f8875947351923b4b5773c017c4"
+  integrity sha512-cB/6cz4+2DS1kW8sO0ug4qUtZ8jJelC/wuk91huwok4uG463eCaN/1t06uo/1tAWfQ5T+MddUsC+Zxtf8JuMQw==
   dependencies:
     axios "^1.7.9"
 
