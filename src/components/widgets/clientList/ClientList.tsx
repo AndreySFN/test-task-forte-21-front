@@ -18,13 +18,13 @@ export const ClientList = () => {
     sortOrder,
     changePagination,
     changeSort,
-    changeSearch,
     rows,
     total,
     loading,
     error,
     fetchClients,
     setSelectionModel,
+    changeSearch,
     selectedRows,
   } = useClientListStore()
 

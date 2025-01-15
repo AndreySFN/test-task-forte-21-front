@@ -12,7 +12,11 @@ export const DeleteClientButton: FC = () => {
     ).finally(fetchClients)
   }
   return (
-    <Button variant="contained" onClick={handleClick}>
+    <Button
+      variant="contained"
+      onClick={handleClick}
+      disabled={idList.length === 0}
+    >
       Delete
     </Button>
   )

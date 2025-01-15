@@ -68,6 +68,7 @@ export const ClientModal: FC<IClientModalProps> = ({
           onChange={(e) => onChangeCompany(e.target.value)}
         />
         <TextField
+          required
           fullWidth
           margin="normal"
           label="Contact"
