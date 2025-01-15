@@ -1,4 +1,5 @@
 import { ApiAdapter } from 'test-task-forte-21-api-adapter'
+import { IAuthState } from './stores/useAuthStore.ts'
 
 const VITE_SERVER_URI = import.meta.env.VITE_SERVER_URI
 
@@ -6,7 +7,11 @@ if (!VITE_SERVER_URI) {
   throw new Error('VITE_SERVER_URI does not exist in environment')
 }
 
-export const apiAdapter = new ApiAdapter(VITE_SERVER_URI) // TODO: Поправить авторизацию, слетает при перезагрузке
+const token = (
+  JSON.parse(localStorage.getItem('auth-store') || '') as { state: IAuthState }
+)?.state?.token // TODO: Костыльный костыль. Убрать
+
+export const apiAdapter = new ApiAdapter(VITE_SERVER_URI, String(token))
 apiAdapter.getInstance().interceptors.response.use(
   (response) => response,
   (error) => {

@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { apiAdapter } from '../ApiAdapter.ts'
 
-interface IAuthState {
+export interface IAuthState {
   token: string | null
   login: (username: string, password: string) => Promise<void>
   logout: () => void
@@ -29,7 +29,10 @@ export const useAuthStore = create<IAuthState>()(
     {
       name: 'auth-store',
       storage: createJSONStorage(() => localStorage),
-      partialize: (state) => ({ token: state.token }),
+      partialize: (state) => ({
+        token: state.token,
+        isAuthenticated: state.isAuthenticated,
+      }),
     },
   ),
 )
