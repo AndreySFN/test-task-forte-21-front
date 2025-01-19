@@ -7,9 +7,16 @@ if (!VITE_SERVER_URI) {
   throw new Error('VITE_SERVER_URI does not exist in environment')
 }
 
-const token = (
-  JSON.parse(localStorage.getItem('auth-store') || '') as { state: IAuthState }
-)?.state?.token // TODO: Костыльный костыль. Убрать
+let token = null
+try {
+  token = (
+    JSON.parse(localStorage.getItem('auth-store') || '') as {
+      state: IAuthState
+    }
+  )?.state?.token // TODO: Костыльный костыль. Убрать
+} catch {
+  // do nothing TODO: Убрать
+}
 
 export const apiAdapter = new ApiAdapter(VITE_SERVER_URI, String(token))
 apiAdapter.getInstance().interceptors.response.use(
