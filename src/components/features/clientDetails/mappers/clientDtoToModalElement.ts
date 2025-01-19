@@ -9,19 +9,29 @@ export const clientDtoToModalElements = (
 ): IModalElement[] => {
   if (!client) return []
   const modalElements = [
-    new ModalElement('Name', client.name), // TODO: Вынести хардкод
-    new ModalElement('Company', client.company),
+    new ModalElement('Name', client.name, `${client._id}-name`), // TODO: Вынести хардкод
+    new ModalElement('Company', client.company, `${client._id}-company`),
   ]
   if (client?.details) {
     const { details } = client
     if (details.about) {
-      modalElements.push(new ModalElement('about', details.about))
+      modalElements.push(
+        new ModalElement('about', details.about, `${client._id}-about`),
+      )
     }
     if (details.phoneNumber) {
-      modalElements.push(new ModalElement('Phone number', details.phoneNumber))
+      modalElements.push(
+        new ModalElement(
+          'Phone number',
+          details.phoneNumber,
+          `${client._id}-phone`,
+        ),
+      )
     }
     if (details.contact) {
-      modalElements.push(new ModalElement('Contacts', details.contact))
+      modalElements.push(
+        new ModalElement('Contacts', details.contact, `${client._id}-contact`),
+      )
     }
   }
   return modalElements

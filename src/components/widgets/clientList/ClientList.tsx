@@ -9,6 +9,7 @@ import { Box } from '@mui/material'
 import { CreateClientButton } from '../../features/createClient/CreateClient.tsx'
 import { UpdateClientButton } from '../../features/editClient/EditClient.tsx'
 import { DeleteClientButton } from '../../features/deleteClient/DeleteClient.tsx'
+import { ClientDetailsBtn } from '../../features/clientDetails/ClientDetailsBtn.tsx'
 
 export const ClientList = () => {
   const {
@@ -50,10 +51,14 @@ export const ClientList = () => {
         >
           <CreateClientButton />
           <UpdateClientButton
-            isDisabled={selectedRows.length !== 1}
+            isDisabled={selectedRows.length !== 1} // TODO: Вынести проверку в утилиты
             id={String(selectedRows[0])}
           />
           <DeleteClientButton />
+          <ClientDetailsBtn
+            id={String(selectedRows[0])}
+            isDisabled={selectedRows.length !== 1} // TODO: Вынести проверку в утилиты
+          />
         </Box>
       )}
       {error ? (

@@ -34,8 +34,8 @@ export const CustomModal: React.FC<ICustomModalProps> = ({
     >
       {title && <DialogTitle>{title}</DialogTitle>}
       <DialogContent>
-        {data?.map((elem) => (
-          <Typography variant="subtitle1">
+        {data?.map((elem, index) => (
+          <Typography variant="subtitle1" key={elem?.key || index}>
             <strong>{elem.subtitle}</strong>: {elem.value}
           </Typography>
         ))}
